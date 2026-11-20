@@ -1,58 +1,56 @@
 # 🥷 Jangjoo Anonymous Chat Bot
 
-<div dir="rtl">
+**English** · [فارسی](README.fa.md)
 
-ربات چت ناشناس تلگرام با سیستم **کیف پول**، **فروشگاه سکه** و **پنل مدیریت**. این پروژه شخصی است و برای نمایش مهارت در توسعه ربات تلگرام ساخته شده.
+An anonymous Telegram chat bot with a **wallet**, a **coin shop** and an **admin panel**. This is a personal project, built to show off Telegram bot development skills.
 
-🤖 **امتحان ربات:** @Jangjoo\_chat\_bot <!-- TODO: لینک ربات دمو -->
+🤖 **Try the bot:** @Jangjoo_chat_bot
 
-## ✨ امکانات
+## ✨ Features
 
-### کاربر
+### For users
 
-* ثبت‌نام با نام نمایشی، سن، شهر و عکس پروفایل
-* جست‌وجوی ناشناس با صف انتظار و اتصال دو کاربر به هم
-* مشاهده پروفایل عمومی طرف مقابل و قطع اتصال
-* کیف پول: انتخاب مبلغ آماده یا دلخواه (حداقل ۲۵,۰۰۰ تومان)، ارسال عکس رسید و تأیید توسط ادمین
-* فروشگاه سکه با چهار بسته (۱۰۰، ۲۵۰، ۶۰۰ و ۱۵۰۰ سکه) و خرید از موجودی کیف پول؛ کسر موجودی و افزودن سکه در یک تراکنش دیتابیس انجام می‌شود
-* شروع جست‌وجوی ناشناس نیازمند سکه است
-* بخش راهنما و پشتیبانی
+* Sign-up with display name, age, city and profile photo
+* Anonymous search with a waiting queue that pairs two users together
+* View the other user's public profile and end the connection
+* Wallet: pick a preset or custom amount (minimum 25,000 Toman), send a receipt photo, and an admin approves it
+* Coin shop with four packages (100, 250, 600 and 1500 coins) paid from the wallet balance; the deduction and the coin credit happen in a single database transaction
+* Starting an anonymous search costs coins
+* Help and support sections
 
-### ادمین
+### For admins
 
-* آمار کل کاربران
-* لیست کاربران و فاکتورها
-* تأیید یا رد رسید شارژ کیف پول (با دکمه شیشه‌ای)
-* ارسال پیام همگانی (متن، عکس و ویدیو)
+* Total user statistics
+* User and invoice lists
+* Approve or reject wallet top-up receipts (inline buttons)
+* Broadcast messages (text, photo and video)
 
-## 🛠 تکنولوژی
+## 🛠 Tech stack
 
 Python • aiogram 3 • SQLite • FSM • asyncio • python-dotenv
 
-## 📁 ساختار پروژه
+## 📁 Project structure
 
-|فایل|وظیفه|
+| File | Responsibility |
 |-|-|
-|`main.py`|نقطه شروع ربات و دستور `/start`|
-|`config.py`|تنظیمات از `.env`، ساخت ربات و روترها|
-|`database.py`|ساخت جدول‌های SQLite و ثبت حساب ادمین|
-|`base.py`|توابع دیتابیس و ساخت کیبوردها|
-|`accounting.py`|ثبت‌نام و حساب کاربری|
-|`connection.py`|جست‌وجو و چت ناشناس|
-|`balance.py`|کیف پول و تأیید رسید|
-|`coins.py`|فروشگاه سکه|
-|`manage.py`|پنل مدیریت|
-|`help.py` و `support.py`|راهنما و پشتیبانی|
+|`main.py`|Bot entry point and the `/start` command|
+|`config.py`|Settings from `.env`, bot and router setup|
+|`database.py`|Creates the SQLite tables and registers the admin account|
+|`base.py`|Database helpers and keyboard builders|
+|`accounting.py`|Sign-up and user account|
+|`connection.py`|Anonymous search and chat|
+|`balance.py`|Wallet and receipt approval|
+|`coins.py`|Coin shop|
+|`manage.py`|Admin panel|
+|`help.py` and `support.py`|Help and support|
 
-## 💳 درباره پرداخت
+## 💳 About payments
 
-شارژ کیف پول به‌صورت **کارت‌به‌کارت** است: کاربر رسید را می‌فرستد و ادمین تأیید می‌کند. درگاه پرداخت آنلاین ندارد، اما ساختار پروژه برای اتصال به درگاه (مثل زرین‌پال) قابل توسعه است.
+Wallet top-ups are **card-to-card**: the user sends a receipt and an admin approves it. There is no online payment gateway, but the project is structured so one (for example Zarinpal) can be added later.
 
-## 🚀 اجرا
+## 🚀 Running the bot
 
-پروژه با Python 3.14 توسعه داده شده است.
-
-</div>
+The project is developed with Python 3.14.
 
 ```bash
 git clone https://github.com/JangjooProgrammer/jangjoo-anonymous-chat-bot.git
@@ -60,43 +58,31 @@ cd jangjoo-anonymous-chat-bot
 
 python -m venv venv
 # Windows:
-venv\\Scripts\\activate
+venv\Scripts\activate
 # macOS / Linux:
 source venv/bin/activate
 
 pip install -r requirements.txt
 ```
 
-<div dir="rtl">
-
-فایل `.env.example` را کپی کنید و اسمش را به `.env` تغییر دهید، سپس مقادیر را وارد کنید:
-
-</div>
+Copy `.env.example`, rename it to `.env`, then fill in the values:
 
 ```env
-BOT\_TOKEN=توکن ربات از BotFather
-ADMIN\_ID=آیدی عددی تلگرام ادمین
-ADMIN\_USERNAME=یوزرنیم ادمین
-PAYMENT\_CARDS=شماره کارت ها، جدا شده با ویرگول
-CARD\_OWNER=نام صاحب کارت
-SUPPORT\_USERNAME=یوزرنیم پشتیبانی
+BOT_TOKEN=bot token from BotFather
+ADMIN_ID=admin's numeric Telegram ID
+ADMIN_USERNAME=admin username
+PAYMENT_CARDS=card numbers, comma separated
+CARD_OWNER=name on the card
+SUPPORT_USERNAME=support username
 ```
 
 ```bash
 python main.py
 ```
 
-<div dir="rtl">
+The database tables and the admin account are created automatically on the first run.
 
-جدول‌های دیتابیس و حساب ادمین در اولین اجرا خودکار ساخته می‌شوند.
+## 🔒 Security notes
 
-## 🔒 نکات امنیتی
-
-* فایل `.env` و دیتابیس (`case.db`) و فایل‌های لاگ هرگز در گیت قرار نمی‌گیرند.
-* توکن، شماره کارت و آیدی ادمین فقط از `.env` خوانده می‌شوند.
-
-</div>
-
-"# jangjoo-anonymous-chat-bot" 
-"# jangjoo-anonymous-chat-bot" 
-# jangjoo-anonymous-chat-bot
+* `.env`, the database (`case.db`) and log files are never committed to git.
+* The token, card numbers and admin ID are read only from `.env`.
