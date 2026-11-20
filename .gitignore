@@ -1,0 +1,19 @@
+# Secrets and local config
+.env
+
+# Runtime data (contains real user data, never commit)
+*.db
+*.sqlite3
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
